@@ -1,0 +1,32 @@
+{
+  "name": "korochki-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "bun run prisma/seed.ts",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@elysiajs/bearer": "^1.2.0",
+    "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/jwt": "^1.2.0",
+    "@prisma/client": "^6.19.0",
+    "bcryptjs": "^3.0.2",
+    "elysia": "^1.4.19",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "bun-types": "^1.2.14",
+    "prisma": "^6.19.0",
+    "typescript": "^5.8.3"
+  },
+  "prisma": {
+    "seed": "bun run prisma/seed.ts"
+  }
+}

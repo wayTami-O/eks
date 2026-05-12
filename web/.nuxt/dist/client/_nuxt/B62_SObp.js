@@ -1,0 +1,1 @@
+function e(){function n(r){return r==="CASH"?"Наличными":r==="PHONE_TRANSFER"?"Переводом по номеру телефона":r}function t(r){return r==="NEW"?"Новая":r==="IN_PROGRESS"?"Идёт обучение":r==="COMPLETED"?"Обучение завершено":r}return{paymentLabel:n,statusLabel:t}}export{e as u};

@@ -1,0 +1,33 @@
+erDiagram
+  User ||--o{ CourseApplication : creates
+  CourseApplication ||--o| Review : has
+  User ||--o{ Review : writes
+
+  User {
+    string id PK
+    string login UK
+    string passwordHash
+    string fullName
+    string phone
+    string email
+    enum role
+    datetime createdAt
+  }
+
+  CourseApplication {
+    string id PK
+    string userId FK
+    string courseTitle
+    datetime startDate
+    enum paymentMethod
+    enum status
+    datetime createdAt
+  }
+
+  Review {
+    string id PK
+    string applicationId FK
+    string userId FK
+    string content
+    datetime createdAt
+  }

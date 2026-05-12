@@ -1,0 +1,1 @@
+import{j as u,x as o}from"./DgnxbM78.js";function c(){const r=o(),{token:e}=u();async function s(t,a={}){const n=a?.headers??{};return $fetch(`${r()}${t}`,{...a,headers:{...n,...e.value?{Authorization:`Bearer ${e.value}`}:{}}})}return{api:s}}export{c as u};

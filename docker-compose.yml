@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: korochki
+      POSTGRES_PASSWORD: korochki
+      POSTGRES_DB: korochki
+    ports:
+      - "5432:5432"
+    volumes:
+      - korochki_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U korochki -d korochki"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5252:5252"
+    environment:
+      DATABASE_URL: postgresql://korochki:korochki@db:5432/korochki
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      PORT: 5252
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-}
+        NUXT_API_INTERNAL: ${NUXT_API_INTERNAL:-http://api:5252}
+    restart: unless-stopped
+    ports:
+      - "6767:6767"
+    environment:
+      NUXT_API_INTERNAL: http://api:5252
+      HOST: 0.0.0.0
+      PORT: 6767
+    depends_on:
+      - api
+
+volumes:
+  korochki_pg:

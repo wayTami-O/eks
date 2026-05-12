@@ -1,0 +1,1 @@
+import{C as n,j as o,s,D as i}from"./DgnxbM78.js";const f=n(async()=>{let e,t;const{token:r,refreshMe:u,user:a}=o();if(!r.value)return s("/login");if(a.value||([e,t]=i(()=>u()),e=await e,t()),!a.value)return s("/login")});export{f as default};

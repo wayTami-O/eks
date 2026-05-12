@@ -1,0 +1,1 @@
+import{C as n,j as i,s as a,D as o}from"./DgnxbM78.js";const f=n(async()=>{let e,r;const{token:s,refreshMe:u,user:t}=i();if(!s.value)return a("/login");if(t.value||([e,r]=o(()=>u()),e=await e,r()),!t.value)return a("/login");if(t.value.role!=="ADMIN")return a("/")});export{f as default};
